@@ -43,3 +43,4 @@ From there you can execute the following commands with `am`
 - Volume controls
 - Next/Previous song
 - Create a CLI application
+- Play song by searching song name & artist
