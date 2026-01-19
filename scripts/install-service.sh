@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Get the absolute path of the project directory
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/.."
+DIR="$( realpath "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/.."
 SERVICE_FILE="/etc/systemd/system/music-daemon.service"
 USER=$(whoami)
 
