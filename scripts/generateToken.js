@@ -1,5 +1,6 @@
 const fs = require('fs');
 const jwt = require('jsonwebtoken');
+const path = require('path');
 require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
 
 if (!teamId || !keyId || !PRIVATE_KEY_PATH) {
