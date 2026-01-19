@@ -1,22 +1,23 @@
 #!/bin/bash
 
-# Get the absolute path of the project directory
-DIR="$( realpath "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/.."
+DIR=$(realpath "$(dirname "${BASH_SOURCE[0]}")/..")
 SERVICE_FILE="/etc/systemd/system/music-daemon.service"
 USER=$(whoami)
+NODE_BIN=$(which node)
 
-echo "🛠 Creating systemd service for user: $USER..."
+COMMAND="$NODE_BIN $DIR/node_modules/.bin/ts-node $DIR/src/background.ts"
 
-# Create the service file content
+echo "Installing service with path: $DIR"
+
 cat <<EOF | sudo tee $SERVICE_FILE > /dev/null
 [Unit]
 Description=Apple Music Linux Daemon
-After=network.target
+After=network-online.target
 
 [Service]
 User=$USER
 WorkingDirectory=$DIR
-ExecStart=$(which node) $DIR/node_modules/.bin/ts-node $DIR/src/background.ts
+ExecStart=$COMMAND
 Restart=always
 Environment=NODE_ENV=production
 
@@ -24,9 +25,9 @@ Environment=NODE_ENV=production
 WantedBy=multi-user.target
 EOF
 
-# Reload and enable
 sudo systemctl daemon-reload
-sudo systemctl enable music-daemon
 sudo systemctl restart music-daemon
 
-echo "Service installed and started! Use 'sudo journalctl -u music-daemon -f' to see logs."
+echo "Service updated. Checking status..."
+sleep 2
+sudo systemctl status music-daemon
