@@ -2,8 +2,10 @@ const fs = require('fs');
 const jwt = require('jsonwebtoken');
 const path = require('path');
 
-require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
-
+require('dotenv').config({
+    path: path.resolve(__dirname, '../.env'),
+    silent: true
+});
 const teamId = process.env.APPLE_TEAM_ID;
 const keyId = process.env.APPLE_KEY_ID;
 const PRIVATE_KEY_PATH = process.env.APPLE_PRIVATE_KEY_PATH;
@@ -14,10 +16,6 @@ if (!teamId || !keyId || !PRIVATE_KEY_PATH) {
     process.exit(1);
 }
 
-console.log("Team ID:", teamId);
-console.log("Key ID:", keyId);
-
-// Generate the token
 const token = jwt.sign({}, privateKey, {
     algorithm: 'ES256',
     expiresIn: '30d',
