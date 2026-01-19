@@ -19,7 +19,7 @@ An install script is provided to add it as a system service
 
 Make the install script executable `chmod +x scripts/install-service.sh` 
 
-Then run the install script to add the daemon as a system service`npm run install-service`
+Then run the install script to add the daemon as a system service `npm run install-service`
 
 Add the alias to your ~/.bashrc
 `alias am='ts-node --transpile-only src/am.ts’`
