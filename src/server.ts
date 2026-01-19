@@ -27,7 +27,6 @@ export function createServer(player: MusicPlayer, devToken: string, onTokenRecei
                         const init = setInterval(() => {
                             if (window.MusicKit) {
                                 clearInterval(init);
-                                console.log("Token:", devToken);
                                 MusicKit.configure({ developerToken: '${devToken}', app: {name: 'Remote'} });
                                 status.innerText = "MusicKit Ready";
                                 document.getElementById('login').onclick = async () => {
@@ -53,6 +52,7 @@ export function createServer(player: MusicPlayer, devToken: string, onTokenRecei
         }
     });
     server.listen(3000, '0.0.0.0', () => {
+        console.log("Token:", devToken);
         console.log("🌐 Server listening on http://localhost:3000");
     });
 
