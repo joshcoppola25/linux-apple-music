@@ -6,6 +6,8 @@ This tool requires a subscription to the Apple Developer program.  You will need
 
 This is currently configured to work with ALSA for audio routing to your sound card, only tested to be working on Debian bookwork (DietPi) on a Raspberry Pi 4 at the moment.
 
+You must also have a chromium browser installed
+
 PM2 must also be installed
 `$ npm install pm2 -g`
 
