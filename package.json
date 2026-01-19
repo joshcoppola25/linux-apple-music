@@ -5,6 +5,7 @@
   "scripts": {
     "start": "ts-node src/index.ts",
     "daemon": "ts-node src/background.ts",
+    "install-service": "./scripts/install-service.sh",
     "build": "tsc",
     "serve": "node dist/index.js"
   },

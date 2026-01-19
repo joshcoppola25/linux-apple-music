@@ -1,6 +1,6 @@
 ### This is actively a WIP, only thing working so far is pausing and playing
 
-## SETUP
+## COMMAND LINE SETUP
 
 This tool requires a subscription to the Apple Developer program.  You will need to generate a private key, a teamId and a keyId.  [Apple provides a guide on how to obtain these here](https://developer.apple.com/documentation/applemusicapi/generating-developer-tokens).  
 
@@ -11,9 +11,15 @@ PM2 must also be installed
 
 Run `mv .env.example .env` and edit .env with the correct values
 
-Run `npx tsc src/am.ts --outDir dist --module commonjs --esModuleInterop`
+Run `npx tsc src/am.ts --outDir dist --module commonjs --esModuleInterop` 
 
-start the daemon with `pm2 start npm --name "music-daemon" -- run daemon`
+## DAEMON SETUP
+
+An install script is provided to add it as a system service
+
+Make the install script executable `chmod +x scripts/install-service.sh` 
+
+Then run the install script to add the daemon as a system service`npm run install-service`
 
 Add the alias to your ~/.bashrc
 `alias am='ts-node --transpile-only src/am.ts’`
