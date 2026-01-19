@@ -2,9 +2,11 @@ const fs = require('fs');
 const jwt = require('jsonwebtoken');
 const path = require('path');
 
+process.env.DOTENV_CONFIG_SILENT = 'true';
+
 require('dotenv').config({
     path: path.resolve(__dirname, '../.env'),
-    silent: true
+    quiet: true
 });
 const teamId = process.env.APPLE_TEAM_ID;
 const keyId = process.env.APPLE_KEY_ID;
